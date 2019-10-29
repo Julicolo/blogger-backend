@@ -1,11 +1,5 @@
 <?php
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Headers: *');
-    
-    $_POST = json_decode(file_get_contents('php://input'), true);
-
-    $connection = new mysqli('localhost', 'root', 'root', 'blog');
-    $connection->set_charset('utf8');
+    include 'dbh.php';
 
     $query = $connection->query("
         SELECT *
@@ -17,5 +11,35 @@
     }
 
     echo json_encode($resultsArray);
+
+    if (isset($_POST['add'])) {
+        $query = $connection->prepare("
+            INSERT INTO blacklist (ip_adress)
+            VALUES (?)
+        ");
+
+        $query->bind_param(
+          's', $_POST['add']
+        );
+
+        $query->execute();
+
+        if ($query->affected_rows === 1) echo json_encode('successfully added!');
+    }
+
+        if (isset($_POST['delete'])) {
+        $query = $connection->prepare("
+            DELETE FROM blacklist
+            WHERE id = ?
+        ");
+
+        $query->bind_param(
+          'i', $_POST['delete']
+        );
+
+        $query->execute();
+
+        if ($query->affected_rows === 1) echo json_encode('successfully deleted!');
+    }
 
     $connection->close();
