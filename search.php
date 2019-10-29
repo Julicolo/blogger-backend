@@ -21,14 +21,8 @@
         $resultsArray[] = $row;
     }
 
-    $noResults = [[
-        'id' => '',
-        'title' => 'No results!',
-        'post_content' => '',
-        'author_name' => ''
-    ]];
 
-    echo $resultsArray ? json_encode($resultsArray) : json_encode($noResults);
+    echo $resultsArray ? json_encode($resultsArray) : json_encode([]);
 
     $connection->close();
 
