@@ -21,8 +21,6 @@
         $resultsArray[] = $row;
     }
 
-
-    echo $resultsArray ? json_encode($resultsArray) : json_encode([]);
-
     $connection->close();
-
+    
+    echo $resultsArray ? json_encode($resultsArray) : json_encode([]);
