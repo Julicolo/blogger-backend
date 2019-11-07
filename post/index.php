@@ -1,5 +1,5 @@
 <?php
-    include 'dbh.php';
+    include '../dbh.php';
 
     $query = $connection->prepare("
         SELECT *

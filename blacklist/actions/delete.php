@@ -1,5 +1,5 @@
 <?php
-    include '../dbh.php';
+    include '../../dbh.php';
 
     if (isset($_POST['delete'])) {
         $query = $connection->prepare("

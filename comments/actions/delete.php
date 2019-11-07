@@ -1,5 +1,5 @@
 <?php
-    include '../dbh.php';
+    include '../../dbh.php';
 
     if (isset($_POST['id']) && isset($_POST['reason'])) {
         $query = $connection->prepare("
