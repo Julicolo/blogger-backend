@@ -17,10 +17,12 @@
 
     $result = $query->get_result();
 
+    $resultsArray = [];
+
     while ($row = $result->fetch_assoc()) {
         $resultsArray[] = $row;
     }
 
     $connection->close();
     
-    echo $resultsArray ? json_encode($resultsArray) : json_encode([]);
+    echo json_encode($resultsArray);
