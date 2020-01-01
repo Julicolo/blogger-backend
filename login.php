@@ -3,9 +3,9 @@
 
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $query = $connection->prepare("
-            SELECT users.id, users.username, users.admin
+            SELECT id, username, authLevel
             FROM users
-            WHERE users.username = ? AND users.password = ?
+            WHERE username = ? AND password = ?
         ");
 
         $query->bind_param(
