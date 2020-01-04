@@ -7,8 +7,10 @@
             VALUES (?, ?, ?)
         ");
 
+        $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
         $query->bind_param(
-          'sss', $_POST['username'], $_POST['password'], $_POST['authLevel']
+          'sss', $_POST['username'], $hash, $_POST['authLevel']
         );
 
         $query->execute();
